@@ -8,7 +8,7 @@
     "dev": "nodemon api/index.js",
     "start": "node index.js"
   },
-  "author": "Himani Patil",
+  "author": "Rupesh Thakur",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
