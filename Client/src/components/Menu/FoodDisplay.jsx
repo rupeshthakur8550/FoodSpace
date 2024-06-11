@@ -59,18 +59,29 @@ const FoodDisplay = ({ category }) => {
         fetchItems();
     }, [user.location, search]);
 
+    const filteredFoodList = food_list.filter(item => {
+        // If the user is a seller, exclude their items from the list
+        if (user.isSeller && item.sellerId === user.id) {
+            return false;
+        }
+        // Include item if it matches the selected category or if the category is "All"
+        return category === 'All' || item.category.includes(category);
+    });
+
     return (
         <div className='mx-5 mb-10 md:mx-16 food-display'>
             <h2 className='mb-9 md:text-2xl font-mono font-semibold text-lg text-center'>- Top Dishes Near You -</h2>
             <div className={`flex flex-wrap ${isVisible ? 'animate-slide-in' : ''}`}>
-                {food_list.map((item, index) => {
-                    if (category === 'All' || item.category.includes(category)) {
-                        return (
-                            <FoodItem key={index} id={item._id} name={item.name} description={item.description} price={item.price} image={'/api/images/' + item.image} />
-                        );
-                    }
-                    return null;
-                })}
+                {filteredFoodList.map((item, index) => (
+                    <FoodItem
+                        key={index}
+                        id={item._id}
+                        name={item.name}
+                        description={item.description}
+                        price={item.price}
+                        image={'/api/images/' + item.image}
+                    />
+                ))}
             </div>
         </div>
     );
