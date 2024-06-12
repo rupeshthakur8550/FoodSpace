@@ -17,7 +17,7 @@ const FoodDisplay = ({ category }) => {
         };
 
         window.addEventListener('scroll', handleScroll);
-        handleScroll(); // Check initial visibility on mount
+        handleScroll();
 
         return () => {
             window.removeEventListener('scroll', handleScroll);
