@@ -5,9 +5,9 @@ import { Dropdown, DropdownDivider, Modal } from 'flowbite-react';
 const Orders = () => {
     const { user } = useContext(StoreContext);
     const [orders, setOrders] = useState([]);
-    const [address, setAddress] = useState([]);
-    const [deliveryId, setDeliveryId] = useState(null);
+    const [address, setAddress] = useState({});
     const [showModal, setShowModal] = useState(false);
+    const [selectedOrder, setSelectedOrder] = useState(null);
 
     useEffect(() => {
         const fetchOrders = async () => {
@@ -28,17 +28,18 @@ const Orders = () => {
         };
 
         fetchOrders();
-    }, []);
+    }, [user._id]);
 
-    const handleClick = async (deliveryId) => {
+    const handleClick = async (order) => {
         try {
-            const res = await fetch(`/api/delivery/getaddress/${deliveryId}`, {
+            const res = await fetch(`/api/delivery/getaddress/${order.delivery}`, {
                 method: 'GET',
                 headers: { 'Content-Type': 'application/json' },
             });
             if (res.ok) {
                 const data = await res.json();
                 setAddress(data.delivery);
+                setSelectedOrder(order);
                 setShowModal(true);
             } else {
                 console.error('Failed to fetch address');
@@ -47,6 +48,7 @@ const Orders = () => {
             console.error('Error fetching address:', error);
         }
     };
+
     const handleStatusChange = async (orderId, newStatus) => {
         try {
             const res = await fetch(`/api/order/updatestatus/${user._id}`, {
@@ -85,6 +87,11 @@ const Orders = () => {
         }
     };
 
+    const calculateTotalAmount = () => {
+        if (!selectedOrder) return 0;
+        return selectedOrder.quantity * selectedOrder.price;
+    };
+
     return (
         <div className='min-h-screen mt-5 md:mt-0'>
             <div>
@@ -104,7 +111,7 @@ const Orders = () => {
                                 <div className='w-full md:w-1/6' style={{ textAlign: '-webkit-center' }}>
                                     <img src={'/api/images/' + order.image} alt={order.name} className="rounded-full md:w-20 md:h-20 w-12 h-12 object-cover" />
                                 </div>
-                                <p className="w-full md:w-1/6 tracking-widest md:text-lg text-xs title-font font-medium text-gray-800 mb-1" onClick={() => handleClick(order.delivery)}>{order.name}</p>
+                                <p className="w-full md:w-1/6 tracking-widest md:text-lg text-xs title-font font-medium text-gray-800 mb-1" onClick={() => handleClick(order)}>{order.name}</p>
                                 <p className="w-full md:w-1/6 tracking-widest md:text-lg text-xs title-font font-medium text-gray-800 mb-1">₹{order.price}</p>
                                 <p className="w-full md:w-1/6 tracking-widest md:text-lg text-xs title-font font-medium text-gray-800 mb-1">{order.quantity}</p>
                                 <p className="w-full md:w-1/6 tracking-widest md:text-lg text-xs title-font font-medium text-gray-800 mb-1">₹{order.total}</p>
@@ -128,20 +135,49 @@ const Orders = () => {
                         </React.Fragment>
                     );
                 })}
-                <Modal show={showModal} onClose={() => setShowModal(false)} popup size='md'>
-                    <Modal.Header />
+                <Modal show={showModal} onClose={() => setShowModal(false)} size="md">
+                    <Modal.Header>
+                        <h3 className='text-lg font-bold text-gray-700'>Order Details</h3>
+                    </Modal.Header>
                     <Modal.Body>
-                        <div className="text-center">
-                            <h3 className='mb-5 text-lg text-gray-700'>Delivery Address</h3>
-                            <div className='grid grid-cols-1 gap-5 justify-center'>
-                                {Object.entries(address)
-                                    .filter(([key]) => !['_id', 'orders', '__v'].includes(key))
-                                    .map(([key, value]) => (
-                                        <div key={key} className="flex items-center">
-                                            <strong>{key.charAt(0).toUpperCase() + key.slice(1)} : </strong>&nbsp;{value}
-                                        </div>
-                                    ))}
+                        <div className="flex flex-col items-center space-y-4 overflow-y-auto">
+                            <div className='w-full border p-4 rounded-lg shadow-md'>
+                                <h4 className='text-md font-bold text-gray-700 mb-2'>Delivery Address</h4>
+                                <div className='grid grid-cols-1 gap-2 text-left'>
+                                    {Object.entries(address)
+                                        .filter(([key]) => !['_id', 'orders', '__v'].includes(key))
+                                        .map(([key, value]) => (
+                                            <div key={key} className="flex justify-between">
+                                                <span className='font-semibold'>{key.charAt(0).toUpperCase() + key.slice(1)}:</span>
+                                                <span>{value}</span>
+                                            </div>
+                                        ))}
+                                </div>
                             </div>
+                            {selectedOrder && (
+                                <div className='w-full border p-4 rounded-lg shadow-md'>
+                                    <h4 className='text-md font-bold text-gray-700 mb-2'>Order Summary</h4>
+                                    <div className='flex flex-col space-y-2'>
+                                        <div className='flex justify-between'>
+                                            <span className='font-semibold'>Item:</span>
+                                            <span>{selectedOrder.name}</span>
+                                        </div>
+                                        <div className='flex justify-between'>
+                                            <span className='font-semibold'>Price:</span>
+                                            <span>₹{selectedOrder.price}</span>
+                                        </div>
+                                        <div className='flex justify-between'>
+                                            <span className='font-semibold'>Quantity:</span>
+                                            <span>{selectedOrder.quantity}</span>
+                                        </div>
+                                        <hr className='my-2' />
+                                        <div className='flex justify-between font-semibold text-lg'>
+                                            <span>Total Amount:</span>
+                                            <span>₹{calculateTotalAmount()}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
                         </div>
                     </Modal.Body>
                 </Modal>
