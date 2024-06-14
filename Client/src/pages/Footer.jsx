@@ -80,7 +80,7 @@ const FooterS = () => {
                         <Footer.Icon className='hover:text-gray-300' href='#' icon={BsFacebook} />
                         <Footer.Icon className='hover:text-gray-300' href='#' icon={BsInstagram} />
                         <Footer.Icon className='hover:text-gray-300' href='#' icon={BsTwitter} />
-                        <Footer.Icon className='hover:text-gray-300' href='https://github.com/himanipatil2601' icon={BsGithub} />
+                        <Footer.Icon className='hover:text-gray-300' href='https://github.com/rupeshthakur8550' icon={BsGithub} />
                         <Footer.Icon className='hover:text-gray-300' href='#' icon={BsDribbble} />
                     </div>
                 </div>
