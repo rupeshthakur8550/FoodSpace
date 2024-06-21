@@ -88,7 +88,7 @@ const Header = () => {
                             >
                                 <div className='flex gap-2 items-center relative'>
                                     Cart <HiOutlineShoppingCart className='w-7 h-7' />
-                                    {getTotalCartAmount() !== 0 && <div className='absolute bg-orange-500 h-2 w-2 top-0 right-0 rounded-full'></div>}
+                                    {getTotalCartAmount() !== 0 && <div className='absolute bg-orange-500 h-2 w-2 bottom-6 left-16 rounded-full'></div>}
                                 </div>
                             </NavLink>
                             <NavLink
