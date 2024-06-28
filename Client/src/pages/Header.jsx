@@ -70,7 +70,7 @@ const Header = () => {
                                     placeholder="Search Items.."
                                     icon={HiSearch}
                                     onChange={(e) => setSearch(e.target.value)}
-                                    className="border-b my-1 block sm:hidden"
+                                    className="border-b my-1"
                                     style={{ height: "5vh", outline: "none" }}
                                 />
                             )}
