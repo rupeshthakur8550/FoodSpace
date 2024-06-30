@@ -71,7 +71,7 @@ const FoodDisplay = ({ category }) => {
     return (
         <div className='mx-5 mb-10 md:mx-16 food-display'>
             <h2 className='mb-9 md:text-2xl font-mono font-semibold text-lg text-center'>- Top Dishes Near You -</h2>
-            <div className={`flex flex-wrap ${isVisible ? 'animate-slide-in' : ''}`}>
+            <div className={`flex flex-wrap ${isVisible ? 'animate-slide-in-left' : ''}`}>
                 {filteredFoodList.map((item, index) => (
                     <FoodItem
                         key={index}

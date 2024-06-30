@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import backgroundImage from '../../assets/header_img.png';
-import '../../Style/Banner.css';
 import ExploreMenu from './ExploreMenu';
 import FoodDisplay from './FoodDisplay';
 

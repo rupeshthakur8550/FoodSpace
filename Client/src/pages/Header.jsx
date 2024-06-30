@@ -51,7 +51,7 @@ const Header = () => {
 
     return (
         <div className='fixed top-0 left-0 right-0 bg-white shadow-lg z-50 items-center'>
-            <Navbar className='border-b-2 h-16'>
+            <Navbar className='border-b-2 h-16 '>
                 <Link to='/' className='self-center whitespace-nowrap text-sm sm:text-2xl font-extrabold text-white' style={{ fontVariant: 'unicase' }}>
                     <span className='px-2 py-1.5 bg-gradient-to-r from-orange-500 from-30% via-sky-500 via-50% to-emerald-500 to-90% inline-block text-transparent bg-clip-text'>Food Space</span>
                 </Link>

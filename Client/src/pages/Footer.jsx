@@ -10,7 +10,7 @@ const FooterS = () => {
                 <div className='grid w-full justify-between items-center sm:flex md:grid-cols-1'>
                     <div className='my-5'>
                         <Link to='/' className='font-bold text-5xl md:text-8xl text-center ' style={{ fontVariant: 'unicase' }}>
-                            <div className='px-2 py-1 bg-gradient-to-r from-orange-500 via-sky-500 to-emerald-500 rounded-lg text-transparent bg-clip-text'>
+                            <div className='px-2 py-1 bg-gradient-to-r from-red-400 via-pink-400 to-purple-600 rounded-lg text-transparent bg-clip-text'>
                                 Food Space
                             </div>
                         </Link>
