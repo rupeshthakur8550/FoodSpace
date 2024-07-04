@@ -5,7 +5,7 @@ import Contact from '../components/Home/Contact'
 
 const Home = () => {
     return (
-        <div className='min-h-screen text-black md:mt-5'>
+        <div className='min-h-screen text-black'>
             <Banner />
             <About />
             <Contact />

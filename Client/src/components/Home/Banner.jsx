@@ -12,7 +12,7 @@ const Banner = () => {
     return (
         <section
             id='home'
-            className="mt-[4rem] banner relative h-screen overflow-hidden bg-cover bg-center flex justify-center items-center mb-2"
+            className="banner relative h-screen overflow-hidden bg-cover bg-center flex justify-center items-center mb-2"
             style={{ backgroundImage: `url(${BackgroundBanner})` }}
         >
             <div className="absolute inset-0 bg-black opacity-40"></div>
