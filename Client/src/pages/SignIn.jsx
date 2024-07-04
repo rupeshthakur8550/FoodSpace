@@ -53,7 +53,7 @@ const SignIn = () => {
     };
 
     return (
-        <div className='mt-28 mb-10 flex items-center justify-center md:mx-8 md:flex-row flex-col md:gap-10 gap-3'>
+        <div className='mt-28 mb-10 flex items-center justify-center md:mx-8 md:flex-row flex-col md:gap-32 gap-3'>
             <div className='md:w-[40%] text-center hidden md:block'>
                 <Link to='/' className='font-bold text-5xl md:text-8xl text-center ' style={{ fontVariant: 'unicase' }}>
                     <div className='px-2 py-3 bg-gradient-to-r from-orange-500 via-sky-500 to-emerald-500 rounded-lg text-transparent bg-clip-text'>

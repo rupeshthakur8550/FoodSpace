@@ -42,17 +42,20 @@ const Header = () => {
     const scrollToSection = (sectionId) => {
         const section = document.getElementById(sectionId);
         if (section) {
+            const offset = -60;
+            const sectionPosition = section.offsetTop + offset;
             window.scrollTo({
-                top: section.offsetTop,
+                top: sectionPosition,
                 behavior: 'smooth'
             });
         }
     };
 
     return (
-        <div className='fixed top-0 left-0 right-0 bg-white shadow-lg z-50 items-center'>
-            <Navbar className='border-b-2 h-16 '>
-                <Link to='/' className='self-center whitespace-nowrap text-sm sm:text-2xl font-extrabold text-white' style={{ fontVariant: 'unicase' }}>
+
+        <div className='fixed top-0 left-0 right-0 shadow-lg z-50'>
+            <Navbar>
+                <Link to='/' className='self-center whitespace-nowrap text-xl sm:text-2xl font-extrabold text-white' style={{ fontVariant: 'unicase' }}>
                     <span className='px-2 py-1.5 bg-gradient-to-r from-orange-500 from-30% via-sky-500 via-50% to-emerald-500 to-90% inline-block text-transparent bg-clip-text'>Food Space</span>
                 </Link>
                 {user ? (
@@ -154,14 +157,13 @@ const Header = () => {
                         >
                             Contact Us
                         </NavLink>
-                        <NavLink
-                            to={linkValue}
-                            className={({ isActive }) => `block py-2 duration-200 ${isActive ? "text-orange-700" : "text-gray-900"} font-semibold mr-2 md:mr-3 block sm:hidden`}
-                        >
-                            {headerValue}
-                        </NavLink>
-                        <div className='block sm:hidden mr-4'>
-                            <Dropdown inline>
+                        <div className='block sm:hidden mr-5'>
+                            <Dropdown inline arrowIcon={false} label={<NavLink
+                                to={linkValue}
+                                className={({ isActive }) => `block py-2 px-2 duration-200 ${isActive ? "text-orange-700" : "text-gray-900"} font-semibold text-md block sm:hidden`}
+                            >
+                                {headerValue}
+                            </NavLink>}>
                                 <Dropdown.Item className='text-md' onClick={() => {
                                     scrollToSection('home');
                                     handleDropdownItemClick('Home', '/');
@@ -184,7 +186,7 @@ const Header = () => {
                         </div>
                         <Link
                             to="/signin"
-                            className="relative px-5 py-2 overflow-hidden font-medium text-gray-900 bg-clip-text text-nowrap rounded-lg shadow-inner group"
+                            className="relative pr-4 sm:px-5 py-2 overflow-hidden font-semibold text-gray-900 bg-clip-text text-nowrap rounded-lg shadow-inner group"
                         >
                             <span className="absolute top-0 left-0 w-0 h-0 transition-all duration-200 border-t-2 border-gray-600 group-hover:w-full ease"></span>
                             <span className="absolute bottom-0 right-0 w-0 h-0 transition-all duration-200 border-b-2 border-gray-600 group-hover:w-full ease"></span>

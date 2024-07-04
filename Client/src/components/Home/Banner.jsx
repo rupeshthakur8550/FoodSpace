@@ -22,7 +22,7 @@ const Banner = () => {
                 <h1 className="text-5xl sm:text-5xl lg:text-6xl font-bold tracking-wide mb-8" style={{ animation: 'slideIn 1s ease-out' }}>
                     Welcome To <span className='px-4 py-2 bg-gradient-to-r from-red-400 via-pink-400 to-purple-600 rounded-lg inline-block text-transparent bg-clip-text text-nowrap' style={{ fontVariant: 'unicase' }}>Food Space</span>
                 </h1>
-                <h3 className="text-xl sm:text-2xl lg:text-3xl font-semibold mb-12 border-b text-pretty border-orange-500 pb-2 mx-4" style={{ animation: 'slideIn 1s ease-out 0.4s forwards' }}>
+                <h3 className="text-xl sm:text-xl lg:text-2xl font-semibold mb-12 border-b text-pretty border-orange-500 pb-2 mx-4" style={{ animation: 'slideIn 1s ease-out 0.4s forwards' }}>
                     Where cravings meet convenience! Discover a world of delectable cuisines, explore local eateries, and indulge in your favorite dishes — all without the hassle of online payments or delivery partners. We’re your go-to platform for satisfying those food cravings, one order at a time.
                 </h3>
                 <button
